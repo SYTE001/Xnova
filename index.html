@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alif Bayu Y. — Web Designer &amp; Frontend Developer</title>
+  <meta name="description" content="Personal portfolio of Alif Bayu Y., a web designer and frontend developer focused on clear UI, responsive layouts, and practical craftsmanship. Based in Indonesia." />
+  <meta name="author" content="Alif Bayu Y." />
+  <meta name="theme-color" content="#DADADA" />
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Dela+Gothic+One&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/src/styles/main.css" />
+
+  <!-- Favicon SVG (Custom Orbit Glyph) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230A0A0A'/%3E%3Cellipse cx='16' cy='16' rx='12' ry='4' fill='none' stroke='%23FFFFFF' stroke-width='2' transform='rotate(-25 16 16)'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23FFFFFF'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Paper Grain Overlay for Authentic Printed Feel -->
+  <div class="paper-grain-overlay" aria-hidden="true"></div>
+
+  <!-- Site Header & Minimal Navigation -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="#" class="brand-mark" aria-label="Alif Bayu Y. Portfolio Home">
+        <svg class="brand-orbit-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3" fill="#0A0A0A"></circle>
+          <ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(-30 12 12)"></ellipse>
+        </svg>
+        <span>Alif Bayu</span>
+      </a>
+
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="primary-nav" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li class="nav-link-item"><a href="#work">Work</a></li>
+          <li class="nav-link-item"><a href="#about">About</a></li>
+          <li class="nav-link-item"><a href="#skills">Skills</a></li>
+          <li class="nav-link-item"><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Landmark -->
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section" aria-label="Introduction &amp; Hero">
+      <!-- Star-field Accents -->
+      <svg class="hero-blob hero-blob-top-right" viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 120 40 C 240 -30, 380 20, 395 140 C 410 260, 310 320, 190 310 C 70 300, 20 230, 35 120 C 50 10, 80 80, 120 40 Z" fill="#0A0A0A" />
+        <circle cx="180" cy="80" r="1.5" fill="#FFFFFF" class="twinkle-star" />
+        <circle cx="280" cy="60" r="2" fill="#FFFFFF" />
+        <circle cx="340" cy="110" r="1" fill="#FFFFFF" class="twinkle-star-delayed" />
+        <circle cx="210" cy="220" r="1.5" fill="#FFFFFF" />
+        <circle cx="130" cy="180" r="1.2" fill="#FFFFFF" />
+        <circle cx="310" cy="230" r="1.8" fill="#FFFFFF" class="twinkle-star" />
+        <path d="M 250 140 Q 250 148 242 148 Q 250 148 250 156 Q 250 148 258 148 Q 250 148 250 140 Z" fill="#FFFFFF" />
+      </svg>
+
+      <svg class="hero-blob hero-blob-bottom-left" viewBox="0 0 360 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 80 80 C 180 20, 320 50, 340 180 C 360 310, 240 330, 120 290 C 0 250, -20 190, 10 120 C 30 50, 40 110, 80 80 Z" fill="#0A0A0A" />
+        <circle cx="140" cy="120" r="1.5" fill="#FFFFFF" class="twinkle-star-delayed" />
+        <circle cx="220" cy="150" r="1.2" fill="#FFFFFF" />
+        <circle cx="170" cy="210" r="2" fill="#FFFFFF" class="twinkle-star" />
+        <circle cx="260" cy="230" r="1" fill="#FFFFFF" />
+        <path d="M 190 90 Q 190 96 184 96 Q 190 96 190 102 Q 190 96 196 96 Q 190 96 190 90 Z" fill="#FFFFFF" />
+      </svg>
+
+      <svg class="hero-blob hero-blob-mid-right" viewBox="0 0 280 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 60 50 C 160 0, 270 40, 275 140 C 280 240, 190 265, 90 250 C -10 235, 10 150, 25 100 C 40 50, 20 80, 60 50 Z" fill="#0A0A0A" />
+        <circle cx="140" cy="80" r="1.5" fill="#FFFFFF" />
+        <circle cx="200" cy="170" r="2" fill="#FFFFFF" class="twinkle-star" />
+        <circle cx="80" cy="180" r="1.2" fill="#FFFFFF" />
+      </svg>
+
+      <!-- Space Illustrations -->
+      <div class="hero-illustration hero-illust-alien" data-parallax="14" aria-hidden="true">
+        <img src="/src/assets/alien.svg" alt="" width="170" height="204" fetchpriority="high" />
+      </div>
+
+      <div class="hero-illustration hero-illust-planet" data-parallax="-10" aria-hidden="true">
+        <img src="/src/assets/planet.svg" alt="" width="340" height="242" fetchpriority="high" />
+      </div>
+
+      <div class="hero-illustration hero-illust-astronaut anim-astronaut" data-parallax="18" aria-hidden="true">
+        <img src="/src/assets/astronaut.svg" alt="" width="240" height="280" fetchpriority="high" />
+      </div>
+
+      <div class="hero-illustration hero-illust-moon" data-parallax="-12" aria-hidden="true">
+        <img src="/src/assets/moon.svg" alt="" width="190" height="190" fetchpriority="high" />
+      </div>
+
+      <div class="hero-illustration hero-illust-ufo anim-ufo" data-parallax="15" aria-hidden="true">
+        <img src="/src/assets/ufo.svg" alt="" width="220" height="238" fetchpriority="high" />
+      </div>
+
+      <div class="hero-illustration hero-illust-telescope" data-parallax="-6" aria-hidden="true">
+        <img src="/src/assets/telescope.svg" alt="" width="160" height="182" fetchpriority="high" />
+      </div>
+
+      <!-- Headline -->
+      <div class="hero-inner">
+        <div class="hero-headline-wrap">
+          <p class="section-kicker">PORTFOLIO // VINTAGE INK EDITION</p>
+          <h1 class="hero-headline font-display display-extruded">
+            <span>EXPLORE</span>
+            <span>MY WORK</span>
+          </h1>
+        </div>
+      </div>
+
+      <!-- Metadata Bar -->
+      <div class="hero-meta-bar">
+        <p class="hero-descriptor">
+          I design and build responsive web experiences with a focus on clear UI and practical details.
+        </p>
+        <div class="hero-author-credit">
+          <span class="hero-author-name">Alif Bayu Y.</span>
+          <span class="hero-author-location">Web Designer &amp; Frontend Developer // Based in Indonesia</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Work Section -->
+    <section id="work" class="section-work" aria-label="Selected Work">
+      <div class="section-container">
+        <div class="section-header-block">
+          <span class="section-kicker">MISSION LOG // 01</span>
+          <h2 class="section-title font-display">SELECTED WORK</h2>
+          <p class="section-subtitle">
+            An expedition through web interfaces and operational systems. Each mission focuses on deliberate layout, crisp typography, and responsive implementation.
+          </p>
+        </div>
+
+        <div class="mission-system">
+          <!-- Featured Mission 01: Agency OS -->
+          <article class="featured-planet-card" aria-labelledby="project-title-agency">
+            <div class="project-media-wrap">
+              <a href="/agency-os.html" class="project-media-link" aria-label="Open Agency OS Case Study">
+                <img 
+                  src="/src/assets/agency-os-card.webp" 
+                  alt="Agency OS — Operational dashboard and workspace for TikTok Shop agencies" 
+                  class="project-media-img" 
+                  width="1200" 
+                  height="850" 
+                  loading="lazy" 
+                />
+              </a>
+            </div>
+
+            <div class="project-content">
+              <div class="project-status-badge">
+                <span class="project-status-indicator" aria-hidden="true"></span>
+                <span>Active Mission // Featured</span>
+              </div>
+
+              <h3 id="project-title-agency" class="project-title font-display">
+                <a href="/agency-os.html" class="project-title-link">AGENCY OS</a>
+              </h3>
+
+              <p class="project-summary">
+                An all-in-one operational system for TikTok Shop agencies to manage creator rosters, brand briefs, LIVE studio schedules, and commission payouts in one interface instead of scattered spreadsheets.
+              </p>
+
+              <div class="project-meta-grid">
+                <span class="project-meta-label">Role</span>
+                <span class="project-meta-val">Web UI Design &amp; Frontend Implementation</span>
+
+                <span class="project-meta-label">Focus</span>
+                <span class="project-meta-val">Workflow Architecture, Dashboard Layout, Usability</span>
+
+                <span class="project-meta-label">Platform</span>
+                <span class="project-meta-val">Multi-tenant Web Application</span>
+              </div>
+
+              <div class="project-tags" aria-label="Technology stack">
+                <span class="project-tag">Semantic HTML</span>
+                <span class="project-tag">Tailwind CSS</span>
+                <span class="project-tag">Responsive UI</span>
+                <span class="project-tag">Design System</span>
+              </div>
+
+              <div class="project-actions">
+                <a 
+                  href="/agency-os.html" 
+                  class="btn-white"
+                  aria-label="Explore Agency OS Case Study"
+                >
+                  Explore Case Study →
+                </a>
+                <a 
+                  href="https://agency-ruby-alpha.vercel.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="btn-outline-white"
+                  aria-label="Launch Agency OS live preview in new tab"
+                >
+                  Launch Project ↗
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Orbital Rows: Project 02 & Project 03 (Coming Soon) -->
+          <div class="orbital-row">
+            <!-- Project 02: Coming Soon -->
+            <article class="orbital-slot" aria-labelledby="project-02-title">
+              <div>
+                <span class="orbital-badge">ORBITAL SLOT // 02</span>
+                <h3 id="project-02-title" class="orbital-title font-display">COMING SOON</h3>
+                <p class="orbital-desc">
+                  Undergoing interface wireframing, layout architecture, and user workflow mapping. Quiet orbital position reserved.
+                </p>
+              </div>
+              <div class="orbital-footer">
+                <span class="orbital-meta">Status: In Development</span>
+                <span class="label-tracked">Non-interactive</span>
+              </div>
+            </article>
+
+            <!-- Project 03: Coming Soon -->
+            <article class="orbital-slot orbital-slot-alt" aria-labelledby="project-03-title">
+              <div>
+                <span class="orbital-badge orbital-badge-white">DEEP SURVEY // 03</span>
+                <h3 id="project-03-title" class="orbital-title font-display">COMING SOON</h3>
+                <p class="orbital-desc">
+                  Exploring experimental frontend interactions and component architecture. Deep space research slot.
+                </p>
+              </div>
+              <div class="orbital-footer">
+                <span class="orbital-meta">Status: In Research</span>
+                <span class="label-tracked-white">Non-interactive</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-about" aria-label="About Alif Bayu">
+      <div class="section-container">
+        <div class="about-grid">
+          <!-- Text Column -->
+          <div class="about-text-col">
+            <div>
+              <span class="section-kicker">EXPEDITION BRIEF // 02</span>
+              <h2 class="section-title font-display">ABOUT THE DESIGNER</h2>
+            </div>
+
+            <p class="about-lead-copy">
+              I’m Alif, a web designer who enjoys shaping ideas into clear, responsive interfaces. I focus on layout, visual hierarchy, usability, and the details that make a website feel considered.
+            </p>
+
+            <p class="about-body-copy">
+              I’m continuing to develop my frontend skills through hands-on projects, testing designs in real browsers rather than leaving them locked in design files. My goal is simple: craft web experiences that communicate clearly, load quickly, and feel dependable to everyone who uses them.
+            </p>
+
+            <div class="about-principles">
+              <div class="principle-item">
+                <h3 class="principle-title">01 // Layout &amp; Flow</h3>
+                <p class="principle-desc">Designing deliberate visual hierarchies so visitors comprehend key ideas without cognitive friction.</p>
+              </div>
+
+              <div class="principle-item">
+                <h3 class="principle-title">02 // Practical Usability</h3>
+                <p class="principle-desc">Interfaces built for real people with accessible contrast, clear touch targets, and sensible flows.</p>
+              </div>
+
+              <div class="principle-item">
+                <h3 class="principle-title">03 // Code-Ready Craft</h3>
+                <p class="principle-desc">Bridging UI design into clean semantic HTML, responsive CSS, and dependable frontend structure.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual Column -->
+          <div class="about-visual-col">
+            <div class="about-frame">
+              <img 
+                src="/src/assets/telescope.svg" 
+                alt="Vintage astronomical telescope engraving on tripod" 
+                class="about-telescope-art"
+                width="320" 
+                height="364" 
+                loading="lazy" 
+              />
+              <div class="about-frame-caption">
+                <span>OBSERVATION STATION</span>
+                <span>INSTRUMENT NO. 04</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section-skills" aria-label="Skills and Instruments">
+      <div class="section-container">
+        <div class="section-header-block">
+          <span class="section-kicker">INSTRUMENTS // 03</span>
+          <h2 class="section-title font-display">CAPABILITIES &amp; STACK</h2>
+          <p class="section-subtitle">
+            Core disciplines and practical tools applied across design and frontend development. Focused on fundamentals that create durable web products.
+          </p>
+        </div>
+
+        <div class="skills-layout">
+          <!-- Design Capabilities -->
+          <div class="skills-group">
+            <h3 class="skills-group-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <span>Design Capabilities</span>
+            </h3>
+            <ul class="skills-list">
+              <li class="skill-row">
+                <span class="skill-name">Landing Page Design</span>
+                <span class="skill-index">[01]</span>
+              </li>
+              <li class="skill-row">
+                <span class="skill-name">Web UI Design</span>
+                <span class="skill-index">[02]</span>
+              </li>
+              <li class="skill-row">
+                <span class="skill-name">Responsive Design</span>
+                <span class="skill-index">[03]</span>
+              </li>
+              <li class="skill-row">
+                <span class="skill-name">Research &amp; Analysis</span>
+                <span class="skill-index">[04]</span>
+              </li>
+              <li class="skill-row">
+                <span class="skill-name">Frontend Fundamentals</span>
+                <span class="skill-index">[05]</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Applied Stack & Tools -->
+          <div class="skills-group">
+            <h3 class="skills-group-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              <span>Applied Instruments</span>
+            </h3>
+            <ul class="skills-list">
+              <li class="skill-row">
+                <span class="skill-name">Figma (UI &amp; Prototyping)</span>
+                <span class="skill-index">[TOOL]</span>
+              </li>
+              <li class="skill-row">
+                <span class="skill-name">Semantic HTML5 &amp; Structure</span>
+                <span class="skill-index">[CORE]</span>
+              </li>
+              <li class="skill-row">
+                <span class="skill-name">Modern CSS &amp; Responsive Layout</span>
+                <span class="skill-index">[CORE]</span>
+              </li>
+              <li class="skill-row">
+                <span class="skill-name">JavaScript (ESNext Fundamentals)</span>
+                <span class="skill-index">[SCRIPT]</span>
+              </li>
+              <li class="skill-row">
+                <span class="skill-name">Git &amp; Version Control</span>
+                <span class="skill-index">[SYS]</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-contact" aria-label="Contact and Signal">
+      <div class="contact-canvas">
+        <div class="contact-headline-wrap">
+          <span class="section-kicker section-kicker-white">TRANSMISSION // 04</span>
+          <h2 class="contact-headline font-display display-extruded">SEND A SIGNAL</h2>
+        </div>
+
+        <div class="contact-body-wrap">
+          <div>
+            <p class="contact-copy">
+              Have an upcoming project, open role, or collaboration in mind? Reach out and let’s talk about building something clear, considered, and responsive.
+            </p>
+          </div>
+
+          <div class="contact-interactive-panel">
+            <span id="signal-status" class="contact-channel-title">
+              FREQUENCY ACTIVE // DIRECT TRANSMISSION READY
+            </span>
+
+            <div class="contact-actions-box">
+              <a 
+                id="signal-action-btn" 
+                href="mailto:bayualif828@gmail.com"
+                class="btn-white" 
+              >
+                <span>Transmit to bayualif828@gmail.com ↗</span>
+              </a>
+              <div id="contact-toast" class="contact-toast" role="status" aria-live="polite"></div>
+            </div>
+
+            <ul class="social-links-list" aria-label="Social and repository connections">
+              <li class="social-item"><span class="label-tracked-white">CHANNELS:</span></li>
+              <li class="social-item"><a href="https://github.com/SYTE001" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+              <li class="social-item"><a href="https://agency-ruby-alpha.vercel.app/" target="_blank" rel="noopener noreferrer">Agency OS Demo ↗</a></li>
+              <li class="social-item"><a href="#about">Designer Bio ↗</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Background Accent -->
+      <img src="/src/assets/alien.svg" alt="" class="contact-decor-alien" width="220" height="264" loading="lazy" aria-hidden="true" />
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div>
+        <span>&copy; <span id="current-year">2026</span> ALIF BAYU Y. ALL RIGHTS RESERVED.</span>
+      </div>
+      <div>
+        <span>CHARTED FROM INDONESIA // COORDINATES: 6.2088° S, 106.8456° E</span>
+      </div>
+      <div>
+        <a href="#main-content" class="footer-back-to-top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Entry Script -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" width="240" height="280" fill="none" stroke="#0A0A0A" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <!-- Umbilical Tether Wire -->
+  <path d="M 60 210 C 20 250, 10 270, 45 275 C 80 278, 25 240, 15 220 C 5 190, 40 170, 70 185" stroke-width="2.5" stroke-dasharray="6 3" />
+  
+  <!-- Life Support Backpack -->
+  <rect x="52" y="70" width="46" height="96" rx="14" fill="#EDEDED" stroke-width="3" />
+  <!-- Backpack hatching -->
+  <line x1="56" y1="82" x2="94" y2="82" stroke-width="1.5" />
+  <line x1="56" y1="88" x2="94" y2="88" stroke-width="1.5" />
+  <line x1="56" y1="94" x2="94" y2="94" stroke-width="1.5" />
+  <line x1="58" y1="130" x2="92" y2="130" stroke-width="1.5" />
+  <line x1="58" y1="136" x2="92" y2="136" stroke-width="1.5" />
+  <line x1="58" y1="142" x2="92" y2="142" stroke-width="1.5" />
+  <circle cx="75" cy="112" r="7" stroke-width="2" fill="#FFFFFF" />
+  <line x1="75" y1="112" x2="79" y2="108" stroke-width="1.8" />
+  <path d="M 64 68 L 64 54 C 64 50, 72 48, 72 54 L 72 68" stroke-width="2.2" />
+  
+  <!-- Torso & Suit -->
+  <path d="M 85 86 C 85 75, 155 75, 155 86 C 160 115, 158 145, 150 175 C 130 182, 105 182, 90 175 C 82 145, 80 115, 85 86 Z" fill="#FFFFFF" stroke-width="3" />
+  <!-- Chest Pack & Harness -->
+  <rect x="100" y="98" width="40" height="38" rx="6" fill="#EDEDED" stroke-width="2" />
+  <line x1="106" y1="108" x2="134" y2="108" stroke-width="1.5" />
+  <line x1="106" y1="114" x2="134" y2="114" stroke-width="1.5" />
+  <circle cx="112" cy="124" r="3" fill="#0A0A0A" />
+  <circle cx="122" cy="124" r="3" fill="#0A0A0A" />
+  <circle cx="132" cy="124" r="3" fill="#0A0A0A" />
+  <!-- Harness Straps -->
+  <line x1="94" y1="86" x2="102" y2="98" stroke-width="2.5" />
+  <line x1="146" y1="86" x2="138" y2="98" stroke-width="2.5" />
+  <line x1="102" y1="136" x2="96" y2="175" stroke-width="2.5" />
+  <line x1="138" y1="136" x2="144" y2="175" stroke-width="2.5" />
+  <!-- Suit Hatching / Fold details -->
+  <path d="M 88 120 C 94 122, 98 124, 100 126" stroke-width="1.5" />
+  <path d="M 88 128 C 93 130, 97 132, 99 135" stroke-width="1.5" />
+  <path d="M 88 136 C 93 138, 96 140, 98 144" stroke-width="1.5" />
+  <path d="M 140 126 C 144 123, 148 121, 152 120" stroke-width="1.5" />
+  <path d="M 139 135 C 143 132, 147 130, 151 128" stroke-width="1.5" />
+  <path d="M 138 144 C 142 140, 146 138, 150 136" stroke-width="1.5" />
+
+  <!-- Helmet -->
+  <ellipse cx="120" cy="52" rx="34" ry="32" fill="#FFFFFF" stroke-width="3" />
+  <!-- Helmet Collar Ring -->
+  <path d="M 94 76 C 102 82, 138 82, 146 76" stroke-width="3.5" fill="none" />
+  <line x1="98" y1="80" x2="142" y2="80" stroke-width="2" />
+  <!-- Visor -->
+  <path d="M 100 48 C 100 34, 140 34, 140 48 C 140 62, 100 62, 100 48 Z" fill="#0A0A0A" stroke-width="2.5" />
+  <!-- Visor Highlight Refraction (Vintage Engraving Style) -->
+  <path d="M 106 42 Q 120 37 132 40" stroke="#FFFFFF" stroke-width="2.5" />
+  <path d="M 108 47 Q 118 43 126 45" stroke="#FFFFFF" stroke-width="1.5" />
+  <circle cx="112" cy="53" r="1.5" fill="#FFFFFF" stroke="none" />
+  <circle cx="117" cy="54" r="1" fill="#FFFFFF" stroke="none" />
+
+  <!-- Left Arm (Floating Upward) -->
+  <path d="M 88 90 C 70 85, 45 70, 36 50 C 33 43, 40 36, 47 40 C 58 48, 74 66, 85 76" fill="#FFFFFF" stroke-width="2.8" />
+  <!-- Ribbed Elbow Joint -->
+  <line x1="50" y1="58" x2="58" y2="68" stroke-width="1.8" />
+  <line x1="53" y1="55" x2="61" y2="65" stroke-width="1.8" />
+  <line x1="56" y1="52" x2="64" y2="62" stroke-width="1.8" />
+  <!-- Left Glove -->
+  <path d="M 36 50 C 30 45, 24 35, 28 30 C 32 26, 36 30, 40 34 C 44 28, 48 29, 48 34 C 49 38, 46 44, 44 46" fill="#EDEDED" stroke-width="2.2" />
+
+  <!-- Right Arm (Gesturing Forward) -->
+  <path d="M 152 90 C 170 94, 192 105, 204 120 C 208 126, 202 133, 195 130 C 182 122, 168 112, 150 108" fill="#FFFFFF" stroke-width="2.8" />
+  <!-- Ribbed Elbow Joint -->
+  <line x1="174" y1="102" x2="178" y2="114" stroke-width="1.8" />
+  <line x1="178" y1="104" x2="182" y2="116" stroke-width="1.8" />
+  <line x1="182" y1="106" x2="186" y2="118" stroke-width="1.8" />
+  <!-- Right Glove -->
+  <path d="M 204 120 C 212 124, 222 130, 218 136 C 214 140, 208 136, 204 133 C 204 138, 198 140, 196 134" fill="#EDEDED" stroke-width="2.2" />
+
+  <!-- Belt / Waist -->
+  <path d="M 90 174 C 105 180, 135 180, 150 174 L 148 186 C 134 192, 106 192, 92 186 Z" fill="#0A0A0A" stroke-width="2" />
+
+  <!-- Left Leg -->
+  <path d="M 95 188 C 88 205, 80 225, 74 242 C 72 248, 80 252, 85 248 C 96 238, 108 215, 114 189" fill="#FFFFFF" stroke-width="2.8" />
+  <!-- Left Knee Ribbing -->
+  <line x1="82" y1="216" x2="98" y2="212" stroke-width="1.8" />
+  <line x1="80" y1="221" x2="96" y2="217" stroke-width="1.8" />
+  <line x1="78" y1="226" x2="94" y2="222" stroke-width="1.8" />
+  <!-- Left Boot -->
+  <path d="M 74 242 C 68 245, 55 250, 56 258 C 57 264, 76 264, 86 256 C 88 252, 86 248, 85 248 Z" fill="#0A0A0A" stroke-width="2" />
+  <line x1="56" y1="262" x2="84" y2="260" stroke="#FFFFFF" stroke-width="1.5" />
+
+  <!-- Right Leg -->
+  <path d="M 126 189 C 132 208, 142 228, 152 246 C 156 252, 164 248, 162 242 C 156 225, 148 204, 145 188" fill="#FFFFFF" stroke-width="2.8" />
+  <!-- Right Knee Ribbing -->
+  <line x1="134" y1="214" x2="150" y2="218" stroke-width="1.8" />
+  <line x1="136" y1="219" x2="152" y2="223" stroke-width="1.8" />
+  <line x1="138" y1="224" x2="154" y2="228" stroke-width="1.8" />
+  <!-- Right Boot -->
+  <path d="M 152 246 C 154 252, 155 262, 168 262 C 178 262, 176 252, 168 245 C 165 242, 163 242, 162 242 Z" fill="#0A0A0A" stroke-width="2" />
+  <line x1="156" y1="260" x2="174" y2="260" stroke="#FFFFFF" stroke-width="1.5" />
+
+  <!-- Stippling Texture Dots -->
+  <g fill="#0A0A0A" stroke="none">
+    <circle cx="106" cy="154" r="1" />
+    <circle cx="110" cy="158" r="1.2" />
+    <circle cx="114" cy="153" r="1" />
+    <circle cx="128" cy="155" r="1.1" />
+    <circle cx="132" cy="160" r="1" />
+    <circle cx="136" cy="154" r="1.2" />
+    <circle cx="86" cy="232" r="1" />
+    <circle cx="89" cy="236" r="1.1" />
+    <circle cx="144" cy="234" r="1" />
+    <circle cx="148" cy="238" r="1.2" />
+    <circle cx="68" cy="65" r="1" />
+    <circle cx="72" cy="62" r="1" />
+  </g>
+</svg>

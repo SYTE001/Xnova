@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agency OS — Case Study &amp; System Architecture | Alif Bayu Y.</title>
+  <meta name="description" content="Case study: Bringing TikTok Shop Agency Operations Into One Workspace. Product thinking, UI/UX architecture, and web development by Alif Bayu Y." />
+  <meta name="author" content="Alif Bayu Y." />
+  <meta name="theme-color" content="#DADADA" />
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Dela+Gothic+One&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/src/styles/main.css" />
+
+  <!-- Favicon SVG (Custom Orbit Glyph) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230A0A0A'/%3E%3Cellipse cx='16' cy='16' rx='12' ry='4' fill='none' stroke='%23FFFFFF' stroke-width='2' transform='rotate(-25 16 16)'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23FFFFFF'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to case study content</a>
+
+  <!-- Paper Grain Overlay for Authentic Printed Feel -->
+  <div class="paper-grain-overlay" aria-hidden="true"></div>
+
+  <!-- Site Header & Navigation -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-mark" aria-label="Alif Bayu Y. Portfolio Home">
+        <svg class="brand-orbit-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3" fill="#0A0A0A"></circle>
+          <ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(-30 12 12)"></ellipse>
+        </svg>
+        <span>Alif Bayu</span>
+      </a>
+
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="primary-nav" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li class="nav-link-item"><a href="/index.html#work">← Work</a></li>
+          <li class="nav-link-item"><a href="#overview">Overview</a></li>
+          <li class="nav-link-item"><a href="#architecture">Architecture</a></li>
+          <li class="nav-link-item"><a href="#modules">Modules</a></li>
+          <li class="nav-link-item"><a href="https://agency-ruby-alpha.vercel.app/" target="_blank" rel="noopener noreferrer">Live Demo ↗</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Case Study Content -->
+  <main id="main-content" class="cs-page-wrap">
+    <div class="cs-container">
+      
+      <!-- Top Utility / Return Bar -->
+      <div class="cs-nav-row">
+        <a href="/index.html#work" class="cs-back-link">
+          <span aria-hidden="true">←</span> Return to Mission Log
+        </a>
+        <div class="cs-status-banner">
+          <span class="cs-tag-active">
+            <span class="project-status-indicator" aria-hidden="true"></span>
+            Case Study // Product Strategy &amp; UI Architecture
+          </span>
+          <a 
+            href="https://agency-ruby-alpha.vercel.app/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="cs-tag-badge"
+            aria-label="Open live prototype on Vercel"
+          >
+            ⚡ Live Prototype
+          </a>
+        </div>
+      </div>
+
+      <!-- Breadcrumbs -->
+      <nav class="cs-breadcrumb" aria-label="Breadcrumb">
+        <a href="/index.html">HQ</a>
+        <span aria-hidden="true">/</span>
+        <a href="/index.html#work">Missions</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Agency OS // Case Study</span>
+      </nav>
+
+      <!-- Project Header / Dispatch Overview -->
+      <section class="cs-hero-section" aria-labelledby="cs-main-heading">
+        <div class="cs-title-wrap">
+          <span class="cs-sec-kicker">MISSION LOG // 01 — PRODUCT STRATEGY &amp; UI ARCHITECTURE</span>
+          <h1 id="cs-main-heading" class="hero-headline font-display display-extruded cs-title">
+            <span>AGENCY</span>
+            <span>OS.</span>
+          </h1>
+        </div>
+
+        <p class="cs-lead-desc">
+          Bringing TikTok Shop Agency Operations Into One Workspace.
+        </p>
+
+        <!-- Technical Specification Grid -->
+        <div class="cs-specs-grid" aria-label="Project details and metadata">
+          <div class="cs-spec-item">
+            <span class="cs-spec-label">Project Type</span>
+            <span class="cs-spec-val">Self-initiated concept</span>
+          </div>
+          <div class="cs-spec-item">
+            <span class="cs-spec-label">Role &amp; Focus</span>
+            <span class="cs-spec-val">Product Thinking, UI/UX Design &amp; Web Dev</span>
+          </div>
+          <div class="cs-spec-item">
+            <span class="cs-spec-label">Operational Ecosystem</span>
+            <span class="cs-spec-val">TikTok Shop E-Commerce</span>
+          </div>
+          <div class="cs-spec-item">
+            <span class="cs-spec-label">Platform Architecture</span>
+            <span class="cs-spec-val">Multi-tenant Web Application</span>
+          </div>
+        </div>
+
+        <!-- Quick CTAs -->
+        <div class="cs-cta-group">
+          <a 
+            href="https://agency-ruby-alpha.vercel.app/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="btn-ink"
+            aria-label="Launch Agency OS interactive preview in new tab"
+          >
+            ⚡ Launch Live Prototype ↗
+          </a>
+          <a href="#architecture" class="btn-ink" style="background-color: var(--paper-lift); color: var(--ink);">
+            Explore Architecture ↓
+          </a>
+        </div>
+      </section>
+
+      <!-- Primary Interface Preview (FIG 0.0) -->
+      <section class="cs-preview-showcase" aria-label="Agency OS Interface Preview">
+        <img 
+          src="/src/assets/agency-os-card.webp" 
+          alt="Agency OS dashboard showing live creator operational metrics and studio timetable" 
+          width="1200" 
+          height="850" 
+          fetchpriority="high"
+        />
+        <div class="cs-preview-caption">
+          <span>FIG 0.0 // PRODUCTION DEPLOYMENT INTERFACE — UNIFIED WORKSPACE ARCHITECTURE</span>
+          <span>TIKTOK SHOP AGENCY OPERATIONS</span>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           // 01. EXECUTIVE OVERVIEW
+           ====================================================================== -->
+      <section id="overview" class="cs-section-block" aria-labelledby="sec-01-title">
+        <div class="cs-section-header">
+          <span class="cs-sec-kicker">// 01. EXECUTIVE OVERVIEW</span>
+          <h2 id="sec-01-title" class="cs-sec-title font-display">THE MISSION</h2>
+        </div>
+        <p class="cs-sec-lead">
+          Agency OS is a workspace concept designed to help TikTok Shop agencies manage creators, brand campaigns, LIVE studio schedules, and commission payouts in one place.
+        </p>
+        <p class="cs-sec-text">
+          The goal was simple: make complex daily operations easier to organize, monitor, and scale without cross-platform friction. By anchoring every operational entity into a single synchronized database, agencies transition from fire-fighting daily logistical chaos to running predictable, high-velocity broadcast campaigns.
+        </p>
+      </section>
+
+      <!-- ======================================================================
+           // 02. THE CORE PROBLEM — THE FRAGMENTED STACK
+           ====================================================================== -->
+      <section id="problem" class="cs-section-block" aria-labelledby="sec-02-title">
+        <div class="cs-section-header">
+          <span class="cs-sec-kicker">// 02. THE CORE PROBLEM — THE FRAGMENTED STACK</span>
+          <h2 id="sec-02-title" class="cs-sec-title font-display">SILOED DISRUPTION</h2>
+        </div>
+        <p class="cs-sec-lead">
+          Managing an agency involves far more than running campaigns. Creator information, brand briefs, content deadlines, LIVE schedules, and commission records frequently end up scattered across disconnected spreadsheets and siloed communication tools.
+        </p>
+        <p class="cs-sec-text">
+          This separation creates unnecessary handoffs, makes end-to-end campaign progress difficult to track, and introduces high operational friction during monthly payout reconciliations.
+        </p>
+
+        <!-- CUSTOM VISUAL: FIG 1.0 — SYSTEM ARCHITECTURE TRANSFORMATION MAP -->
+        <div id="architecture" class="cs-diagram-box" aria-label="System Architecture Transformation Map">
+          <div class="cs-diagram-topbar">
+            <span class="cs-diagram-title">FIG 1.0 — SYSTEM ARCHITECTURE TRANSFORMATION MAP</span>
+            <span class="cs-diagram-badge">SILOED DISRUPTION ➔ UNIFIED OS</span>
+          </div>
+
+          <div class="cs-trans-grid">
+            <!-- Left: Siloed Disruption -->
+            <div class="cs-trans-col">
+              <span class="cs-trans-col-header">
+                <span>✕</span> Siloed Disruption (Fragmented Stack)
+              </span>
+
+              <div class="cs-card-siloed">
+                <h3 class="cs-siloed-title"><span class="cross">✕</span> Sheets: Creator Data</h3>
+                <p class="cs-siloed-desc">
+                  Disconnected spreadsheets, out-of-sync roster contacts, broken formulas, and version drift across team members.
+                </p>
+              </div>
+
+              <div class="cs-card-siloed">
+                <h3 class="cs-siloed-title"><span class="cross">✕</span> Chat: Brief Approvals</h3>
+                <p class="cs-siloed-desc">
+                  Buried WhatsApp/Telegram messages, unlogged revisions, missed brand requirements, and delayed sample shipping.
+                </p>
+              </div>
+
+              <div class="cs-card-siloed">
+                <h3 class="cs-siloed-title"><span class="cross">✕</span> Calendars: Studio LIVE</h3>
+                <p class="cs-siloed-desc">
+                  Uncoordinated room schedules, double-booked studio gear, missing host rosters, and zero real-time shift accountability.
+                </p>
+              </div>
+            </div>
+
+            <!-- Center: Core Engine -->
+            <div class="cs-trans-core">
+              <svg class="cs-core-orbit-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="3" fill="#FFFFFF"></circle>
+                <ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(-30 12 12)" stroke="#FFFFFF"></ellipse>
+              </svg>
+              <h3 class="cs-core-title font-display">AGENCY OS CORE</h3>
+              <span class="cs-core-subtitle">Automated Operations Engine</span>
+              <div class="cs-core-specs">
+                ✦ Unified Data Schema<br />
+                ✦ Event-Driven State Relays<br />
+                ✦ Multi-Tenant RBAC Workspaces
+              </div>
+            </div>
+
+            <!-- Right: Unified OS -->
+            <div class="cs-trans-col">
+              <span class="cs-trans-col-header">
+                <span>✓</span> Unified OS (Synchronized Reality)
+              </span>
+
+              <div class="cs-card-unified">
+                <h3 class="cs-unified-title"><span class="check">✓</span> Single Creator Truth</h3>
+                <p class="cs-unified-desc">
+                  Indexed creator directory with contractual tier status, category affinity, verified GMV history, and live availability.
+                </p>
+              </div>
+
+              <div class="cs-card-unified">
+                <h3 class="cs-unified-title"><span class="check">✓</span> Studio LIVE Rosters</h3>
+                <p class="cs-unified-desc">
+                  Synchronized room timetables, host and technician pairing, live stream telemetry, and shift-specific GMV targets.
+                </p>
+              </div>
+
+              <div class="cs-card-unified">
+                <h3 class="cs-unified-title"><span class="check">✓</span> Instant Settlements</h3>
+                <p class="cs-unified-desc">
+                  Direct algorithmic commission calculations tied directly to verified shift broadcast revenue without spreadsheet audits.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           // 03. THE STRATEGIC GOAL
+           ====================================================================== -->
+      <section class="cs-section-block" aria-labelledby="sec-03-title">
+        <div class="cs-section-header">
+          <span class="cs-sec-kicker">// 03. THE STRATEGIC GOAL</span>
+          <h2 id="sec-03-title" class="cs-sec-title font-display">CONNECTED WORKFLOW</h2>
+        </div>
+        <p class="cs-sec-lead">
+          Create one centralized workspace where teams can manage their operations through a connected, transparent, and predictable workflow.
+        </p>
+
+        <!-- 3 Strategic Pillars Grid -->
+        <div class="cs-pillars-grid">
+          <div class="cs-pillar-card">
+            <div>
+              <span class="cs-pillar-sparkle">✦</span>
+              <h3 class="cs-pillar-title font-display">ZERO DATA ISOLATION</h3>
+              <p class="cs-pillar-desc">
+                Eliminates fragmented spreadsheets. Creators, brand briefs, samples, and studio rosters share a single source of truth across all agency departments.
+              </p>
+            </div>
+            <span class="cs-pillar-tag">System Foundation // Relational Integrity</span>
+          </div>
+
+          <div class="cs-pillar-card">
+            <div>
+              <span class="cs-pillar-sparkle">✦</span>
+              <h3 class="cs-pillar-title font-display">PREDICTABLE HANDOFFS</h3>
+              <p class="cs-pillar-desc">
+                Clear milestones govern the progression of each brief: from initial client ingestion to creator matching, script approval, and physical studio broadcast.
+              </p>
+            </div>
+            <span class="cs-pillar-tag">Workflow Design // Clear Accountability</span>
+          </div>
+
+          <div class="cs-pillar-card">
+            <div>
+              <span class="cs-pillar-sparkle">✦</span>
+              <h3 class="cs-pillar-title font-display">AUTOMATED RECONCILIATIONS</h3>
+              <p class="cs-pillar-desc">
+                Replaces end-of-month financial disputes with programmatic commission models linked directly to verified LIVE shift telemetry and GMV metrics.
+              </p>
+            </div>
+            <span class="cs-pillar-tag">Financial Logic // Algorithmic Settlement</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           // 04. THE SYSTEM APPROACH — FOUR INTERCONNECTED OPERATIONAL MODULES
+           ====================================================================== -->
+      <section id="modules" class="cs-section-block" aria-labelledby="sec-04-title">
+        <div class="cs-section-header">
+          <span class="cs-sec-kicker">// 04. THE SYSTEM APPROACH</span>
+          <h2 id="sec-04-title" class="cs-sec-title font-display">FOUR INTERCONNECTED MODULES</h2>
+        </div>
+        <p class="cs-sec-lead">
+          The interface purposefully models these workflows as parts of one continuous operational system rather than disconnected standalone tools.
+        </p>
+
+        <!-- The 4 Module Cards with Custom Blueprint Widgets -->
+        <div class="cs-modules-grid">
+          
+          <!-- [MOD 01] Creator & Brand Directory -->
+          <article class="cs-module-card">
+            <div>
+              <div class="cs-module-header">
+                <span class="cs-mod-badge">[MOD 01]</span>
+                <span class="cs-mod-status">Identity &amp; Roster</span>
+              </div>
+              <h3 class="cs-module-title">Creator &amp; Brand Directory</h3>
+              <p class="cs-module-desc">
+                Organize creators, brand profiles, and tier relationships into indexed records with clear contractual visibility.
+              </p>
+            </div>
+
+            <!-- Custom Wireframe Widget 01 -->
+            <div class="cs-wireframe-widget" aria-label="Directory wireframe blueprint">
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Talent Record</span>
+                <span class="cs-widget-val">@sinta_beauty</span>
+              </div>
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Contract Tier</span>
+                <span class="cs-widget-badge-active">Tier 1 (Macro Creator)</span>
+              </div>
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Niche Affinity</span>
+                <span class="cs-widget-val">Skincare &amp; Cosmetics</span>
+              </div>
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Status</span>
+                <span class="cs-widget-val">Signed // Verified for LIVE</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- [MOD 02] Campaign & Content Pipeline -->
+          <article class="cs-module-card">
+            <div>
+              <div class="cs-module-header">
+                <span class="cs-mod-badge">[MOD 02]</span>
+                <span class="cs-mod-status">Deliverable Engine</span>
+              </div>
+              <h3 class="cs-module-title">Campaign &amp; Content Pipeline</h3>
+              <p class="cs-module-desc">
+                Track incoming briefs, talent assignments, milestone deadlines, and multi-stage content review approvals in real time.
+              </p>
+            </div>
+
+            <!-- Custom Wireframe Widget 02 -->
+            <div class="cs-wireframe-widget" aria-label="Pipeline wireframe blueprint">
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Active Campaign</span>
+                <span class="cs-widget-val">GlowSkin Serum Launch</span>
+              </div>
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Brief Ingest</span>
+                <span class="cs-widget-val">✓ Approved by Brand</span>
+              </div>
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Script Review</span>
+                <span class="cs-widget-badge-active">Stage 2 // Review Complete</span>
+              </div>
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Sample Dispatch</span>
+                <span class="cs-widget-val">Delivered (T-minus 24h to LIVE)</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- [MOD 03] LIVE Studio Scheduling -->
+          <article class="cs-module-card">
+            <div>
+              <div class="cs-module-header">
+                <span class="cs-mod-badge">[MOD 03]</span>
+                <span class="cs-mod-status">Studio Ops</span>
+              </div>
+              <h3 class="cs-module-title">LIVE Studio Scheduling</h3>
+              <p class="cs-module-desc">
+                Coordinate physical studio rooms, on-air hosts, tech operators, and shift-specific GMV sales targets seamlessly.
+              </p>
+            </div>
+
+            <!-- Custom Wireframe Widget 03 -->
+            <div class="cs-wireframe-widget" aria-label="Studio scheduler wireframe blueprint">
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Studio Bay</span>
+                <span class="cs-widget-val">Room A // Studio Bay 01</span>
+              </div>
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Live Host &amp; Operator</span>
+                <span class="cs-widget-val">Rian K. + Bayu (Tech)</span>
+              </div>
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Shift Window</span>
+                <span class="cs-widget-badge-active">19:00 - 23:00 [ON AIR]</span>
+              </div>
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Shift GMV Performance</span>
+                <span class="cs-widget-val">Rp 64.2M (128% Target)</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- [MOD 04] Commissions & Settlements -->
+          <article class="cs-module-card">
+            <div>
+              <div class="cs-module-header">
+                <span class="cs-mod-badge">[MOD 04]</span>
+                <span class="cs-mod-status">Settlement Ledger</span>
+              </div>
+              <h3 class="cs-module-title">Commissions &amp; Settlements</h3>
+              <p class="cs-module-desc">
+                Structure commission logic, payout approvals, and auditable financial records without manual spreadsheet reconciliation.
+              </p>
+            </div>
+
+            <!-- Custom Wireframe Widget 04 -->
+            <div class="cs-wireframe-widget" aria-label="Settlement wireframe blueprint">
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Payout Batch</span>
+                <span class="cs-widget-val">#SETTL-2026-WK42</span>
+              </div>
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Gross Shift GMV</span>
+                <span class="cs-widget-val">Rp 128.400.000</span>
+              </div>
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Host Split (15%)</span>
+                <span class="cs-widget-val">Rp 19.260.000</span>
+              </div>
+              <div class="cs-widget-row">
+                <span class="cs-widget-label">Audit Status</span>
+                <span class="cs-widget-badge-active">✓ Verified &amp; Ready for Payout</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- CUSTOM VISUAL: FIG 2.0 — OPERATIONAL FLYWHEEL LOOP -->
+        <div class="cs-flywheel-box" aria-label="Operational Flywheel Loop Diagram">
+          <div class="cs-flywheel-header">
+            <div class="cs-flywheel-title-group">
+              <span class="cs-sec-kicker">FIG 2.0 — OPERATIONAL FLYWHEEL LOOP</span>
+              <h3 class="font-display">CONTINUOUS DATA PIPELINE</h3>
+              <p>How system workflows reinforce and accelerate each other</p>
+            </div>
+            <span class="cs-tag-active">Continuous Loop</span>
+          </div>
+
+          <div class="cs-flywheel-track">
+            <!-- Node 01 -->
+            <div class="cs-flywheel-node">
+              <div>
+                <span class="cs-flywheel-step-tag">Step // 01</span>
+                <h4 class="cs-flywheel-node-title">01. DIRECTORY</h4>
+                <p class="cs-flywheel-node-desc">
+                  Talent &amp; Brand Base. Ingests contractual creator data, tier ratings, and brand niche requirements.
+                </p>
+              </div>
+              <span class="cs-pillar-tag">➔ Feeds into Pipeline</span>
+            </div>
+
+            <!-- Node 02 -->
+            <div class="cs-flywheel-node">
+              <div>
+                <span class="cs-flywheel-step-tag">Step // 02</span>
+                <h4 class="cs-flywheel-node-title">02. PIPELINE</h4>
+                <p class="cs-flywheel-node-desc">
+                  Briefs &amp; Deliverables. Maps verified talent to campaign briefs, script approvals, and sample delivery.
+                </p>
+              </div>
+              <span class="cs-pillar-tag">➔ Schedules Live Studio</span>
+            </div>
+
+            <!-- Node 03 -->
+            <div class="cs-flywheel-node">
+              <div>
+                <span class="cs-flywheel-step-tag">Step // 03</span>
+                <h4 class="cs-flywheel-node-title">03. LIVE STUDIO</h4>
+                <p class="cs-flywheel-node-desc">
+                  Rooms &amp; Shift Targets. Executes broadcast timetables, tracks real-time sales telemetry and GMV goals.
+                </p>
+              </div>
+              <span class="cs-pillar-tag">➔ Generates Settlement</span>
+            </div>
+
+            <!-- Node 04 -->
+            <div class="cs-flywheel-node">
+              <div>
+                <span class="cs-flywheel-step-tag">Step // 04</span>
+                <h4 class="cs-flywheel-node-title">04. SETTLEMENT</h4>
+                <p class="cs-flywheel-node-desc">
+                  Payouts &amp; Commission. Programmatically calculates splits, audits deductions, and issues verified payouts.
+                </p>
+              </div>
+              <span class="cs-pillar-tag">↺ Loops Back to Directory</span>
+            </div>
+          </div>
+
+          <!-- Flywheel Telemetry Note -->
+          <div class="cs-flywheel-footer-note">
+            <svg class="cs-notice-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 24px; height: 24px;">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+            </svg>
+            <span>
+              <strong>Continuous Operational Acceleration:</strong> Every completed LIVE broadcast shift and settlement record feeds directly back into creator performance telemetry and brand affinity history, improving future campaign matching accuracy.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           // 05. PROJECT OUTCOME
+           ====================================================================== -->
+      <section class="cs-section-block" aria-labelledby="sec-05-title">
+        <div class="cs-section-header">
+          <span class="cs-sec-kicker">// 05. PROJECT OUTCOME</span>
+          <h2 id="sec-05-title" class="cs-sec-title font-display">UNIFIED BACKBONE</h2>
+        </div>
+        <p class="cs-sec-lead">
+          The project resulted in a fully deployed product concept that communicates a modern, organized approach to TikTok Shop agency operations.
+        </p>
+        <p class="cs-sec-text">
+          It practically demonstrates how creator management, campaign execution, LIVE studio scheduling, and financial workflows coalesce into a unified operational backbone.
+        </p>
+
+        <!-- Retrospective Poster Quote Block -->
+        <div class="cs-retrospective-box">
+          <span class="cs-quote-symbol" aria-hidden="true">“</span>
+          <blockquote class="cs-quote-text">
+            Good operations software is not just about putting more features on one dashboard. It is about connecting information, clarifying responsibilities, and making the next step obvious.
+          </blockquote>
+          <div class="cs-quote-credit">
+            Core Product Retrospective &amp; Design Takeaway
+          </div>
+        </div>
+
+        <!-- Interactive Prototype Deployment Banner -->
+        <div class="cs-deploy-card">
+          <div class="cs-deploy-info">
+            <span class="cs-sec-kicker" style="color: var(--ink);">INTERACTIVE PROTOTYPE DEPLOYMENT</span>
+            <h3 class="font-display">EXPLORE THE LIVE INTERFACE</h3>
+            <p>
+              Inspect the live interface, system workflows, and operational views deployed on Vercel.
+            </p>
+          </div>
+          <a 
+            href="https://agency-ruby-alpha.vercel.app/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="btn-ink"
+            aria-label="Launch Agency OS live prototype"
+          >
+            agency-ruby-alpha.vercel.app ↗
+          </a>
+        </div>
+      </section>
+
+      <!-- Bottom Return & Contact Navigation -->
+      <div class="cs-footer-nav">
+        <a href="/index.html#work" class="cs-back-link">
+          <span aria-hidden="true">←</span> Back to All Projects
+        </a>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+          <a href="https://agency-ruby-alpha.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-text">
+            Launch Live App ↗
+          </a>
+          <a href="/index.html#contact" class="link-text">
+            Send a Signal (Contact Alif Bayu) ↗
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-bottom-bar">
+        <p class="footer-copy">
+          &copy; <span id="current-year">2026</span> Alif Bayu Y. — AGENCY OS // CASE STUDY BRIEF — SECTION: 02 // EXECUTION &amp; OUTCOMES.
+        </p>
+        <span class="footer-status-pill">MISSION 01 DISPATCH // ONLINE</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Script -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
