@@ -11,33 +11,66 @@ document.addEventListener('DOMContentLoaded', () => {
     yearElement.textContent = new Date().getFullYear();
   }
 
-  // 2. Mobile Navigation Toggle
+  // 2. Mobile Navigation Toggle & Smooth Backdrop
   const mobileToggle = document.querySelector('.mobile-nav-toggle');
   const navLinks = document.querySelector('.nav-links');
 
   if (mobileToggle && navLinks) {
-    mobileToggle.addEventListener('click', () => {
+    // Inject backdrop overlay if not present
+    let navBackdrop = document.querySelector('.nav-backdrop');
+    if (!navBackdrop) {
+      navBackdrop = document.createElement('div');
+      navBackdrop.className = 'nav-backdrop';
+      navBackdrop.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(navBackdrop);
+    }
+
+    const openMenu = () => {
+      mobileToggle.setAttribute('aria-expanded', 'true');
+      navLinks.classList.add('nav-open');
+      navBackdrop.classList.add('active');
+      document.body.classList.add('menu-open');
+    };
+
+    const closeMenu = () => {
+      mobileToggle.setAttribute('aria-expanded', 'false');
+      navLinks.classList.remove('nav-open');
+      navBackdrop.classList.remove('active');
+      document.body.classList.remove('menu-open');
+    };
+
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
-      mobileToggle.setAttribute('aria-expanded', String(!isExpanded));
-      navLinks.classList.toggle('nav-open');
+      if (isExpanded) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
 
-    // Close menu when a navigation anchor is clicked
+    // Close when tapping backdrop
+    navBackdrop.addEventListener('click', closeMenu);
+
+    // Close menu when any anchor link is clicked
     navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('nav-open');
-        mobileToggle.setAttribute('aria-expanded', 'false');
-      });
+      link.addEventListener('click', closeMenu);
     });
 
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
-        navLinks.classList.remove('nav-open');
-        mobileToggle.setAttribute('aria-expanded', 'false');
+        closeMenu();
         mobileToggle.focus();
       }
     });
+
+    // Close if window resizes beyond mobile breakpoint
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && navLinks.classList.contains('nav-open')) {
+        closeMenu();
+      }
+    }, { passive: true });
   }
 
   // 3. Contact & Signal Action Handler
@@ -54,9 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 4. Ambient Parallax on Hero Illustrations
+  // 4. Ambient Parallax on Hero Illustrations (Desktop fine pointers only)
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!prefersReducedMotion) {
+  const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (!prefersReducedMotion && isFinePointer) {
     const heroSection = document.querySelector('.hero-section');
     const parallaxItems = document.querySelectorAll('[data-parallax]');
 
@@ -78,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!rafId) {
           rafId = requestAnimationFrame(updateParallax);
         }
-      });
+      }, { passive: true });
 
       heroSection.addEventListener('mouseleave', () => {
         targetX = 0;
@@ -93,8 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const depth = parseFloat(el.getAttribute('data-parallax') || '10');
           const moveX = currentX * depth;
           const moveY = currentY * depth;
-          el.style.setProperty('--px-x', `${moveX.toFixed(2)}px`);
-          el.style.setProperty('--px-y', `${moveY.toFixed(2)}px`);
+          el.style.transform = `translate3d(${moveX.toFixed(2)}px, ${moveY.toFixed(2)}px, 0)`;
         });
 
         if (Math.abs(targetX - currentX) > 0.001 || Math.abs(targetY - currentY) > 0.001) {

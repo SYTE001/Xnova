@@ -55,6 +55,7 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -67,6 +68,10 @@ body {
   position: relative;
   overflow-x: hidden;
   selection-background-color: var(--ink);
+}
+
+body.menu-open {
+  overflow: hidden;
 }
 
 /* Selection & Scrollbar Surfaces */
@@ -139,7 +144,7 @@ img, svg {
   top: 1rem;
 }
 
-/* Paper Grain Texture Overlay (Print feel, 3% opacity, zero performance penalty) */
+/* Paper Grain Texture Overlay */
 .paper-grain-overlay {
   position: fixed;
   inset: 0;
@@ -147,8 +152,10 @@ img, svg {
   height: 100vh;
   pointer-events: none;
   z-index: 999;
-  opacity: 0.035;
+  opacity: 0.025;
   mix-blend-mode: multiply;
+  transform: translateZ(0);
+  contain: strict;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
@@ -459,9 +466,17 @@ img, svg {
   gap: 5px;
   width: 44px;
   height: 44px;
-  padding: 8px;
+  padding: 10px 8px;
   border: 2px solid var(--ink);
   background: var(--paper-lift);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mobile-nav-toggle:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink);
 }
 
 .mobile-nav-toggle span {
@@ -469,7 +484,40 @@ img, svg {
   width: 100%;
   height: 2px;
   background-color: var(--ink);
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  transform-origin: center;
+}
+
+.mobile-nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.mobile-nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Smooth Backdrop Overlay */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  top: 67px;
+  background-color: rgba(10, 10, 10, 0.45);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s;
+  z-index: 80;
+}
+
+.nav-backdrop.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* --------------------------------------------------------------------------
@@ -1300,19 +1348,19 @@ img, svg {
    -------------------------------------------------------------------------- */
 @keyframes astronautFloat {
   0%, 100% {
-    transform: translateY(0px) rotate(16deg);
+    transform: translate3d(0, 0px, 0) rotate(16deg);
   }
   50% {
-    transform: translateY(-12px) rotate(13deg);
+    transform: translate3d(0, -10px, 0) rotate(13deg);
   }
 }
 
 @keyframes ufoBob {
   0%, 100% {
-    transform: translateY(0px);
+    transform: translate3d(0, 0px, 0);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translate3d(0, -6px, 0);
   }
 }
 
@@ -1327,10 +1375,12 @@ img, svg {
 
 .anim-astronaut {
   animation: astronautFloat 7s ease-in-out infinite;
+  will-change: transform;
 }
 
 .anim-ufo {
   animation: ufoBob 5.5s ease-in-out infinite;
+  will-change: transform;
 }
 
 .anim-ufo .tractor-beam {
@@ -2136,32 +2186,28 @@ img, svg {
 }
 
 @media (max-width: 768px) {
-  .cs-flywheel-track {
-    grid-template-columns: 1fr;
+  /* Site Header Compact & Clean */
+  .site-header {
+    padding: 0.85rem 1.25rem;
   }
 
-  .cs-modules-grid {
-    grid-template-columns: 1fr;
-  }
-  /* Headline adjustment for mobile performance and crispness */
+  /* Headline adjustment for mobile crispness */
   .display-extruded {
-    -webkit-text-stroke: 2px var(--ink);
+    -webkit-text-stroke: 1.5px var(--ink);
     text-shadow:
       1px 1px 0 var(--ink),
       2px 2px 0 var(--ink),
       3px 3px 0 var(--ink),
-      4px 4px 0 var(--ink),
-      5px 5px 0 var(--ink);
+      4px 4px 0 var(--ink);
   }
 
   .display-extruded-inverted {
-    -webkit-text-stroke: 2px var(--white);
+    -webkit-text-stroke: 1.5px var(--white);
     text-shadow:
       1px 1px 0 var(--white),
       2px 2px 0 var(--white),
       3px 3px 0 var(--white),
-      4px 4px 0 var(--white),
-      5px 5px 0 var(--white);
+      4px 4px 0 var(--white);
   }
 
   /* Mobile Navigation Menu */
@@ -2177,21 +2223,45 @@ img, svg {
     background-color: var(--paper);
     border-bottom: 2px solid var(--ink);
     flex-direction: column;
-    padding: 1.5rem;
-    gap: 1.25rem;
-    transform: translateY(-120%);
-    transition: transform 0.25s ease-in-out;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    padding: 1.25rem 1.5rem 2rem;
+    gap: 0.5rem;
+    transform: translateY(-130%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, visibility 0.32s;
+    box-shadow: 0 16px 24px rgba(10, 10, 10, 0.12);
+    z-index: 90;
   }
 
   .nav-links.nav-open {
     transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
   }
 
-  /* Refined Hero cluster on mobile to avoid collisions */
+  .nav-links .nav-link-item {
+    width: 100%;
+  }
+
+  .nav-links .nav-link-item a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    border-bottom: 1px dashed #b8b8b8;
+    min-height: 48px;
+  }
+
+  .nav-links .nav-link-item:last-child a {
+    border-bottom: none;
+  }
+
+  /* Refined Hero layout on mobile */
   .hero-section {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding: 2rem 1.25rem 2.5rem;
     min-height: auto;
   }
 
@@ -2201,8 +2271,9 @@ img, svg {
   }
 
   .hero-headline {
-    font-size: clamp(2.6rem, 13vw, 4.2rem);
-    line-height: 0.92;
+    font-size: clamp(2.35rem, 11vw, 3.8rem);
+    line-height: 0.94;
+    word-break: break-word;
   }
 
   .hero-meta-bar {
@@ -2215,7 +2286,7 @@ img, svg {
 
   .hero-descriptor {
     font-size: 1rem;
-    line-height: 1.5;
+    line-height: 1.55;
   }
 
   .hero-author-credit {
@@ -2229,56 +2300,235 @@ img, svg {
   }
 
   .hero-blob-top-right {
-    width: 200px;
+    width: 170px;
     top: -20px;
-    right: -40px;
+    right: -30px;
+    opacity: 0.8;
   }
 
-  /* Show 3-4 key illustrations on mobile: astronaut, planet, ufo, moon */
+  /* Elegant framing illustrations on mobile */
   .hero-illust-alien,
   .hero-illust-telescope {
     display: none !important;
   }
 
   .hero-illust-planet {
-    width: 110px;
-    top: 5px;
-    right: -15px;
-    z-index: 5;
+    width: 95px;
+    top: 0px;
+    right: -10px;
+    z-index: 2;
+    opacity: 0.9;
+  }
+
+  .hero-illust-moon {
+    width: 50px;
+    left: -10px;
+    top: 10px;
+    bottom: auto;
+    z-index: 2;
+    opacity: 0.85;
   }
 
   .hero-illust-astronaut {
-    width: 90px;
-    top: 95px;
-    right: -5px;
-    bottom: auto;
-    z-index: 12;
+    width: 75px;
+    top: auto;
+    bottom: 80px;
+    right: 10px;
+    z-index: 6;
   }
 
   .hero-illust-ufo {
     position: relative;
-    width: 105px;
+    width: 85px;
     left: auto;
     bottom: auto;
-    margin: 0.75rem auto 0.25rem;
+    margin: 1.25rem auto 0.5rem;
     display: block;
-    z-index: 10;
+    z-index: 6;
   }
 
-  .hero-illust-moon {
-    width: 60px;
-    left: -15px;
-    top: 15px;
-    bottom: auto;
-    z-index: 5;
+  /* Section Spacing on Mobile */
+  .section-work,
+  .section-about,
+  .section-skills,
+  .section-contact {
+    padding: 3.5rem 1.25rem;
   }
 
+  /* Featured Planet Card on Mobile */
+  .featured-planet-card {
+    padding: 1.25rem;
+    gap: 1.5rem;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .featured-planet-card:hover {
+    transform: none;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .project-title {
+    font-size: clamp(1.75rem, 6vw, 2.4rem);
+    line-height: 1;
+  }
+
+  .project-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+    padding: 0.75rem 0;
+  }
+
+  .project-meta-label {
+    font-size: 0.65rem;
+  }
+
+  .project-meta-val {
+    font-size: 0.85rem;
+  }
+
+  .project-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .project-actions .btn-white,
+  .project-actions .btn-outline-white {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  /* Orbital Slot on Mobile */
+  .orbital-slot {
+    padding: 1.5rem 1.25rem;
+    min-height: 220px;
+  }
+
+  /* About Frame on Mobile */
+  .about-visual-col .about-frame {
+    max-width: 240px;
+    margin: 1.5rem auto 0;
+  }
+
+  /* Skills List on Mobile */
   .skills-layout {
     grid-template-columns: 1fr;
+    gap: 1.75rem;
   }
 
+  .skills-list .skill-row {
+    padding: 0.75rem 0.25rem;
+    min-height: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--graph-faint);
+  }
+
+  /* Contact Section on Mobile */
   .contact-interactive-panel {
     padding: 1.25rem;
+  }
+
+  .contact-actions-box #signal-action-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .social-links-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  /* Case Study Specific Mobile Adjustments */
+  .cs-page-wrap {
+    padding: 1.5rem 0 3rem;
+  }
+
+  .cs-container {
+    padding: 0 1.25rem;
+  }
+
+  .cs-nav-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .cs-title {
+    font-size: clamp(2.4rem, 11vw, 3.8rem);
+    line-height: 0.95;
+  }
+
+  .cs-specs-grid {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .cs-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .cs-cta-group .btn-ink {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .cs-trans-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .cs-flywheel-track {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .cs-modules-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .cs-deploy-card {
+    padding: 1.5rem 1.25rem;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 1.25rem;
+  }
+
+  .cs-deploy-card .btn-ink {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .cs-footer-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  .cs-footer-nav .cs-back-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Tactile Touch Feedback */
+  .btn-white:active,
+  .btn-ink:active,
+  .btn-outline-white:active,
+  .cs-back-link:active {
+    transform: scale(0.98);
   }
 }
 
