@@ -8,10 +8,13 @@
   <meta name="author" content="Alif Bayu Y." />
   <meta name="theme-color" content="#DADADA" />
 
-  <!-- Preconnect to Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Dela+Gothic+One&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- JS gate (fonts are self-hosted inside the bundle) -->
+  <script>
+    document.documentElement.classList.add('js');
+    window.setTimeout(function () {
+      if (!window.__introDone) document.documentElement.classList.add('js-failsafe');
+    }, 3200);
+  </script>
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/src/styles/main.css" />
@@ -37,13 +40,13 @@
         <span>Alif Bayu</span>
       </a>
 
-      <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
-        <span></span>
-        <span></span>
-        <span></span>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="site-nav">
+        <span class="toggle-bar"></span>
+        <span class="toggle-bar"></span>
+        <span class="toggle-bar"></span>
       </button>
 
-      <nav id="primary-nav" aria-label="Primary Navigation">
+      <nav id="site-nav" class="site-nav" aria-label="Primary Navigation">
         <ul class="nav-links">
           <li class="nav-link-item"><a href="/index.html#work">← Work</a></li>
           <li class="nav-link-item"><a href="#overview">Overview</a></li>
