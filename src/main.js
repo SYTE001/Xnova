@@ -83,7 +83,6 @@ function splitChars(el, baseDelay, wave, startIndex) {
   const text = el.textContent;
   el.textContent = '';
   el.setAttribute('aria-label', text);
-  el.setAttribute('aria-hidden', 'true');
 
   let index = startIndex;
   [...text].forEach((ch) => {
@@ -94,6 +93,7 @@ function splitChars(el, baseDelay, wave, startIndex) {
     const s = document.createElement('span');
     s.className = 'char';
     s.textContent = ch;
+    s.setAttribute('aria-hidden', 'true');
     s.style.setProperty('--cd', `${Math.round(baseDelay + index * wave)}ms`);
     el.appendChild(s);
     index += 1;
@@ -140,7 +140,7 @@ function initBoot() {
   }
 
   // Counter: 000 → 100 in BOOT_MIN ms, ease 1-(1-t)^2.2
-  const BOOT_MIN = 520;
+  const BOOT_MIN = 900;
   const t0 = performance.now();
   const ease = (t) => 1 - Math.pow(1 - t, 2.2);
 
@@ -179,6 +179,11 @@ function initDrawer() {
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
     document.body.classList.toggle('menu-open', open);
+    // Contain focus/screen-reader traversal to the drawer while open
+    ['#main-content', '.site-footer', '#back-to-top'].forEach((sel) => {
+      const el = document.querySelector(sel);
+      if (el && 'inert' in el) el.inert = open;
+    });
   };
 
   toggle.addEventListener('click', (e) => {
@@ -338,6 +343,7 @@ function initScheduler() {
     wrap: img.closest('.card-featured-media') || img.parentElement,
     top: 0,
     height: 0,
+    maxShift: 0,
   }));
 
   const rotEls = $$('[data-rot]').map((el) => ({
@@ -364,7 +370,11 @@ function initScheduler() {
       item.height = r.height;
     };
     parallaxEls.forEach((item) => measureEl(item, item.el));
-    pyImgs.forEach((item) => measureEl(item, item.wrap));
+    pyImgs.forEach((item) => {
+      measureEl(item, item.wrap);
+      // scale(1.1) leaves ~5% overflow per edge; keep the drift inside it
+      item.maxShift = item.height * 0.04;
+    });
     rotEls.forEach((item) => measureEl(item, item.el));
     marquees.forEach((item) => {
       if (item.track.children.length) item.unit = item.track.children[0].offsetWidth;
@@ -394,9 +404,13 @@ function initScheduler() {
       item.el.style.transform = `translate3d(0, ${item.current.toFixed(2)}px, 0)`;
     });
 
-    // In-frame image drift, clamped ±70 px, written into --py
+    // In-frame image drift, clamped to the scale headroom, written into --py
     pyImgs.forEach((item) => {
-      const target = clamp((y + vh / 2 - (item.top + item.height / 2)) * item.speed, -70, 70);
+      const target = clamp(
+        (y + vh / 2 - (item.top + item.height / 2)) * item.speed,
+        -item.maxShift,
+        item.maxShift
+      );
       item.img.style.setProperty('--py', `${target.toFixed(1)}px`);
     });
 

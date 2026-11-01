@@ -486,6 +486,11 @@ footer[id] {
   border-color: var(--signal);
 }
 
+@keyframes starTwinkle {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.88); opacity: 0.75; }
+}
+
 /* Live dot — semantic live state only */
 .live-dot {
   display: inline-block;
@@ -822,6 +827,14 @@ body.menu-open .site-header {
 
 body.menu-open .toggle-bar {
   background: var(--white);
+}
+
+body.menu-open .brand-mark {
+  color: var(--white);
+}
+
+body.menu-open .brand-orbit-glyph circle {
+  fill: var(--white);
 }
 
 /* --------------------------------------------------------------------------
@@ -2265,8 +2278,8 @@ html:not(.js) .back-to-top {
    12.5. Case Study Page Styles (agency-os.html)
    -------------------------------------------------------------------------- */
 .cs-page-wrap {
-  padding: clamp(2rem, 5vw, 4.5rem) 0 4rem;
-  min-height: calc(100vh - 70px);
+  padding: calc(var(--header-h) + clamp(2rem, 5vw, 4.5rem)) 0 4rem;
+  min-height: calc(100vh - var(--header-h));
 }
 
 .cs-container {
