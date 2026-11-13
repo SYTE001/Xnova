@@ -20,7 +20,9 @@
   <script>
     document.documentElement.classList.add('js');
     window.setTimeout(function () {
-      if (!window.__introDone) document.documentElement.classList.add('js-failsafe');
+      if (!window.__introDone && !window.__introActive) {
+        document.documentElement.classList.add('js-failsafe');
+      }
     }, 3200);
   </script>
 
@@ -33,14 +35,6 @@
 <body>
   <!-- Accessible Skip Link -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
-
-  <!-- Intro boot curtain -->
-  <div class="boot" id="boot" aria-hidden="true">
-    <div class="boot-panel boot-panel--left"></div>
-    <div class="boot-panel boot-panel--right"></div>
-    <span class="boot-seam"></span>
-    <span class="boot-counter" id="boot-counter">000</span>
-  </div>
 
   <!-- Scroll progress -->
   <div class="progress-bar" id="progress-bar" aria-hidden="true"></div>
@@ -481,7 +475,10 @@
       <div class="footer-meta">
         <span>© <span id="current-year" data-year>2026</span> Alif Bayu Y. All rights reserved.</span>
         <span>Vintage Ink Edition // Charted from Indonesia // 6.2088° S, 106.8456° E</span>
-        <a href="#top" class="link-sweep">Top ↑</a>
+        <div class="footer-meta-actions">
+          <button type="button" class="link-sweep footer-replay-btn" id="replay-intro-btn">Replay Intro</button>
+          <a href="#top" class="link-sweep">Top ↑</a>
+        </div>
       </div>
     </div>
   </footer>

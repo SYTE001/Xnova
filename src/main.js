@@ -5,6 +5,7 @@
  */
 
 import { SITE_CONFIG } from './site.config.js';
+import { mountBlackHoleIntro } from './blackhole-intro.js';
 
 /* ------------------------------------------------------------------ *
  * Environment & helpers
@@ -117,52 +118,110 @@ function initSplitting() {
 }
 
 /* ------------------------------------------------------------------ *
- * 4. Intro boot controller
+ * 4. Black hole intro & Singularity Crossing handover
  * ------------------------------------------------------------------ */
+const INTRO_SEEN_KEY = 'xnova_intro_seen';
+
+function hasSeenIntro() {
+  try {
+    return window.sessionStorage.getItem(INTRO_SEEN_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
+function markIntroSeen() {
+  try {
+    window.sessionStorage.setItem(INTRO_SEEN_KEY, '1');
+  } catch {
+    // Ignore storage errors in restricted contexts
+  }
+}
+
+function clearIntroSeen() {
+  try {
+    window.sessionStorage.removeItem(INTRO_SEEN_KEY);
+  } catch {
+    // Ignore storage errors in restricted contexts
+  }
+}
+
 function revealHero() {
   $$('.hero [data-reveal]').forEach((el) => el.classList.add('is-inview'));
 }
 
 function initBoot() {
+  const hero = $('.hero');
   const boot = $('#boot');
-  const counter = $('#boot-counter');
+  let activeIntro = null;
 
-  const release = () => {
+  const releaseImmediate = () => {
+    window.__introActive = false;
     window.__introDone = true;
-    document.body.classList.add('is-ready');
+    document.body.classList.remove('hero-pending', 'intro-locked');
+    document.documentElement.classList.remove('intro-locked');
+    document.body.classList.add('is-ready', 'hero-stage-1', 'hero-stage-2', 'hero-stage-3');
     revealHero();
     if (boot) boot.remove();
   };
 
-  if (REDUCED || !boot) {
-    release();
+  const launchIntro = () => {
+    if (activeIntro) activeIntro.cleanup();
+
+    window.__introActive = true;
+    window.__introDone = false;
+
+    document.body.classList.remove('is-ready', 'hero-stage-1', 'hero-stage-2', 'hero-stage-3');
+    document.body.classList.add('hero-pending');
+    $$('.hero [data-reveal]').forEach((el) => el.classList.remove('is-inview'));
+
+    activeIntro = mountBlackHoleIntro({
+      onStage1: () => {
+        document.body.classList.add('hero-stage-1');
+      },
+      onStage2: () => {
+        document.body.classList.add('hero-stage-2');
+        $$('.hero-eyebrow [data-reveal], .hero-id[data-reveal]').forEach((el) => {
+          el.classList.add('is-inview');
+        });
+      },
+      onStage3: () => {
+        document.body.classList.add('is-ready', 'hero-stage-3');
+        $$('.hero-lede[data-reveal], .hero-actions[data-reveal], .scroll-cue[data-reveal]').forEach((el) => {
+          el.classList.add('is-inview');
+        });
+      },
+      onComplete: () => {
+        activeIntro = null;
+        markIntroSeen();
+        window.__introActive = false;
+        window.__introDone = true;
+        document.body.classList.remove('hero-pending');
+      },
+    });
+  };
+
+  window.replayIntro = function replayIntro() {
+    clearIntroSeen();
+    if (!hero) return;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    launchIntro();
+  };
+
+  const replayBtn = $('#replay-intro-btn');
+  if (replayBtn) {
+    replayBtn.addEventListener('click', () => {
+      window.replayIntro();
+    });
+  }
+
+  if (!hero || REDUCED || hasSeenIntro()) {
+    releaseImmediate();
     return;
   }
 
-  // Counter: 000 → 100 in BOOT_MIN ms, ease 1-(1-t)^2.2
-  const BOOT_MIN = 900;
-  const t0 = performance.now();
-  const ease = (t) => 1 - Math.pow(1 - t, 2.2);
-
-  requestAnimationFrame(function tickFrame(now) {
-    const p = clamp((now - t0) / BOOT_MIN, 0, 1);
-    if (counter) counter.textContent = String(Math.round(ease(p) * 100)).padStart(3, '0');
-    if (p < 1) {
-      requestAnimationFrame(tickFrame);
-      return;
-    }
-    // Panels split; hero reveal fires synchronously for deterministic timing
-    window.__introDone = true;
-    boot.classList.add('is-open');
-    document.body.classList.add('is-ready');
-    revealHero();
-    window.setTimeout(() => boot.classList.add('is-done'), 900);
-  });
-
-  // Safety valve: never trap the page behind the intro
-  window.setTimeout(() => {
-    if (!document.body.classList.contains('is-ready')) release();
-  }, 2600);
+  if (boot) boot.remove();
+  launchIntro();
 }
 
 /* ------------------------------------------------------------------ *

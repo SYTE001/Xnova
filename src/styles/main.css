@@ -3362,3 +3362,395 @@ html:not(.js) .back-to-top {
     animation: none !important;
   }
 }
+
+/* ==========================================================================
+   BLACK HOLE INTRO OVERLAY & SINGULARITY CROSSING TRANSITION
+   ========================================================================== */
+html.intro-locked,
+body.intro-locked {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+.bh-intro {
+  --bh-bg: #030304;
+  --bh-ink: #EDE8DF;
+  --bh-ink-dim: rgba(237, 232, 223, 0.56);
+  --bh-ink-faint: rgba(237, 232, 223, 0.24);
+  --bh-accent: #E88A46;
+  --bh-margin: clamp(24px, 4.8vw, 68px);
+  --bh-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --bh-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  overflow: hidden;
+  background-color: var(--bh-bg);
+  color: var(--bh-ink);
+  font-family: var(--bh-display);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.bh-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+}
+
+.bh-hud {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.bh-intro .mask-clip {
+  overflow: hidden;
+  display: block;
+}
+
+.bh-intro .mask-line {
+  display: block;
+  transform: translate3d(0, 112%, 0);
+  will-change: transform;
+  transition: transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bh-hud.revealed .mask-line {
+  transform: translate3d(0, 0%, 0);
+}
+
+.bh-hud.instant .mask-line {
+  transition: none;
+  transform: translate3d(0, 0%, 0);
+}
+
+/* Phase 1: Slide-down back behind mask-clip on ENTER */
+.bh-hud.exiting .mask-line {
+  transform: translate3d(0, 112%, 0);
+  transition: transform 0.38s cubic-bezier(0.4, 0, 1, 1) 0ms !important;
+}
+
+.bh-telemetry {
+  position: absolute;
+  top: var(--bh-margin);
+  right: var(--bh-margin);
+  text-align: right;
+  font-family: var(--bh-mono);
+  font-size: clamp(10px, 1.05vw, 12px);
+  line-height: 1.65;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bh-ink-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.bh-telemetry .mask-line {
+  transition-delay: 0.25s;
+}
+
+.bh-telemetry-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.2em;
+}
+
+.bh-telemetry-label {
+  color: var(--bh-ink-faint);
+}
+
+.bh-hero-block {
+  position: absolute;
+  left: var(--bh-margin);
+  bottom: var(--bh-margin);
+  max-width: min(78vw, 960px);
+}
+
+.bh-title {
+  font-family: var(--bh-display);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 7.6vw, 7.25rem);
+  line-height: 0.92;
+  letter-spacing: -0.042em;
+  text-transform: uppercase;
+  color: var(--bh-ink);
+  margin: 0;
+}
+
+.bh-title .mask-clip:nth-child(2) .mask-line {
+  transition-delay: 0.14s;
+}
+
+.bh-tagline-wrap {
+  margin-top: clamp(14px, 1.8vw, 24px);
+}
+
+.bh-tagline {
+  font-family: var(--bh-mono);
+  font-size: clamp(11px, 1.15vw, 13.5px);
+  letter-spacing: 0.06em;
+  color: var(--bh-ink-dim);
+  transition-delay: 0.32s;
+}
+
+.bh-enter-wrap {
+  position: absolute;
+  right: var(--bh-margin);
+  bottom: var(--bh-margin);
+  pointer-events: auto;
+}
+
+.bh-enter-wrap .mask-line {
+  transition-delay: 0.44s;
+}
+
+.bh-enter-btn {
+  appearance: none;
+  background: none;
+  border: none;
+  color: var(--bh-ink);
+  font-family: var(--bh-mono);
+  font-size: clamp(11px, 1.1vw, 13px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 10px 0 12px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  outline: none;
+}
+
+.bh-enter-btn:focus-visible .bh-enter-label {
+  color: var(--bh-accent);
+}
+
+.bh-enter-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.3s ease;
+}
+
+.bh-enter-track {
+  position: relative;
+  width: clamp(72px, 8vw, 112px);
+  height: 1px;
+  background: var(--bh-ink-faint);
+  overflow: hidden;
+}
+
+.bh-enter-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--bh-ink);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bh-enter-btn:hover .bh-enter-fill,
+.bh-enter-btn:focus-visible .bh-enter-fill {
+  transform: scaleX(1);
+}
+
+.bh-enter-btn.entered .bh-enter-fill {
+  transform: scaleX(1);
+  background: var(--bh-accent);
+}
+
+@media (max-width: 640px) {
+  .bh-hero-block {
+    bottom: calc(var(--bh-margin) + 56px);
+    max-width: calc(100vw - var(--bh-margin) * 2);
+  }
+
+  .bh-enter-wrap {
+    bottom: var(--bh-margin);
+  }
+}
+
+/* Phase 2: Blueprint Paper Circular Wipe (#E2E4E4 + #E88A46 ring) */
+.bh-wipe {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background-color: #E2E4E4;
+  clip-path: circle(0% at 50% 50%);
+  pointer-events: none;
+  will-change: clip-path, opacity, background-color;
+  transition:
+    clip-path 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.35s ease 0.4s,
+    opacity 0.4s ease;
+}
+
+.bh-intro.is-wiping .bh-wipe {
+  clip-path: circle(150% at 50% 50%);
+}
+
+.bh-intro.is-handover .bh-wipe {
+  background-color: var(--paper);
+  opacity: 0;
+}
+
+.bh-wipe-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240vmax;
+  height: 240vmax;
+  border-radius: 50%;
+  border: 2px solid var(--bh-accent);
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  will-change: transform, opacity;
+}
+
+.bh-intro.is-wiping .bh-wipe-ring {
+  animation: bhRingExpand 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes bhRingExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.95;
+  }
+  55% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+.bh-intro.is-handover {
+  pointer-events: none;
+  background-color: transparent;
+}
+
+.bh-intro.is-handover .bh-canvas,
+.bh-intro.is-handover .bh-hud {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+/* ==========================================================================
+   PHASE 3: HERO HANDOVER & STAGGER REVEAL (when body.hero-pending is active)
+   ========================================================================== */
+body.hero-pending .sky-field {
+  opacity: 0;
+  transition: opacity 0.55s var(--ease-out);
+}
+
+body.hero-pending.hero-stage-1 .sky-field {
+  opacity: 1;
+}
+
+body.hero-pending .site-header {
+  opacity: 0;
+  transform: translateY(-16px);
+  transition:
+    opacity 0.55s var(--ease-out),
+    transform 0.65s var(--ease-out),
+    background 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out);
+}
+
+body.hero-pending.hero-stage-2 .site-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.hero-pending .hero-eyebrow [data-reveal],
+body.hero-pending .hero-id[data-reveal] {
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s var(--ease-out) var(--rd, 0ms),
+    transform 0.65s var(--ease-out) var(--rd, 0ms),
+    clip-path 0.65s var(--ease-out) var(--rd, 0ms);
+}
+
+body.hero-pending.hero-stage-2 .hero-eyebrow [data-reveal].is-inview,
+body.hero-pending.hero-stage-2 .hero-id[data-reveal].is-inview {
+  clip-path: inset(0 0 0% 0);
+  transform: none;
+}
+
+/* Stage 3: 80ms stagger for headline, CTA, and cosmic illustrations */
+body.hero-pending .hero-lede[data-reveal] {
+  --rd: 80ms;
+}
+
+body.hero-pending .hero-actions[data-reveal] {
+  --rd: 160ms;
+}
+
+body.hero-pending .scroll-cue[data-reveal] {
+  --rd: 240ms;
+}
+
+body.hero-pending .hero-float {
+  opacity: 0;
+  transition: opacity 0.65s var(--ease-out) var(--fd, 0ms);
+}
+
+body.hero-pending .hero-float--ufo { --fd: 80ms; }
+body.hero-pending .hero-float--astronaut { --fd: 160ms; }
+body.hero-pending .hero-float--moon { --fd: 240ms; }
+body.hero-pending .hero-float--planet { --fd: 320ms; }
+body.hero-pending .hero-float--alien { --fd: 400ms; }
+
+body.hero-pending.hero-stage-3 .hero-float {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.hero-pending .sky-field,
+  body.hero-pending .site-header,
+  body.hero-pending .hero-float {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   FOOTER REPLAY INTRO CONTROL
+   ========================================================================== */
+.footer-meta-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.footer-replay-btn {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.footer-replay-btn:hover,
+.footer-replay-btn:focus-visible {
+  color: var(--ink);
+}
