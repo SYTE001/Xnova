@@ -11,6 +11,7 @@ const CONFIG = {
   PUSH_START: 1.2,
   PUSH_END: 4.5,
   TEXT_REVEAL_TIME: 3.0,
+  AUTO_ENTER_TIME: 4.8,
   SETTLE_TIME: 9.0,
 
   // Black hole & accretion disk
@@ -385,8 +386,8 @@ function createOverlayElement() {
 
       <div class="bh-hero-block">
         <h2 class="bh-title">
-          <span class="mask-clip"><span class="mask-line">Event</span></span>
-          <span class="mask-clip"><span class="mask-line">Horizon</span></span>
+          <span class="mask-clip"><span class="mask-line">Alif</span></span>
+          <span class="mask-clip"><span class="mask-line">Bayu</span></span>
         </h2>
         <div class="bh-tagline-wrap">
           <span class="mask-clip">
@@ -923,6 +924,10 @@ export function mountBlackHoleIntro(callbacks = {}) {
       if (!textRevealed && introElapsed >= CONFIG.TEXT_REVEAL_TIME) {
         textRevealed = true;
         hud.classList.add('revealed');
+      }
+
+      if (!prefersReducedMotion && introElapsed >= CONFIG.AUTO_ENTER_TIME) {
+        startSingularityCrossing();
       }
 
       if (now - lastTelemetryUpdate > 60) {

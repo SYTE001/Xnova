@@ -215,7 +215,7 @@ function initBoot() {
     });
   }
 
-  if (!hero || REDUCED || hasSeenIntro()) {
+  if (!hero || REDUCED) {
     releaseImmediate();
     return;
   }
